@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 如果属性名与数据库字段一致可不写该注解
  * 也可以直接使用as
  * 
- * @author cd
+ * @author chendong
  */
 @Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -6,7 +6,7 @@ import com.cd.cdwoo.common.FormBean;
 /**
  * 日志搜索实体formbean
  * 
- * @author cd
+ * @author chendong
  */
 public class OptLogFormBean extends FormBean {
   

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 继承该类的formBean成员变量类型必须为对象，不能为int,long.应该为Integer,Long
  * Entity也一样
  * 
- * @author cd
+ * @author chendong
  */
 public class FormBean implements Serializable {
   

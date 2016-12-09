@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.cdwoo.optLog.dao.OptLogDao">
+  <!-- 查询表是否存在 -->
+  <select id="findTableIsExist" resultType="int">
+        select count(*) c FROM INFORMATION_SCHEMA.TABLES where table_name='cdwoo_opt_log' and table_schema=#{dbName}
+  </select>
+  <insert id="exeuteInitTable" parameterType="int">
+        CREATE TABLE cdwoo_opt_log (
+          id int primary key not null auto_increment,
+          operatorName varchar(255),
+          operatorIp varchar(255),
+          optTime bigint,
+          optLogDesc varchar(255),
+          optResult varchar(255),
+          failReason varchar(255)
+        )
+  </insert>
+  <!-- 查询系统日志 -->
+  <select id="listOptLog" resultType="com.cd.cdwoo.optLog.entity.OptLog">
+    ${sql}
+  </select>
+  <!-- 增加系统日志 -->
+  <insert id="addOptLog" parameterType="com.cd.cdwoo.optLog.entity.OptLog">
+    insert into cdwoo_opt_log
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="operatorName != null" >
+          operatorName,
+        </if>
+        <if test="operatorIp != null" >
+          operatorIp,
+        </if>
+        <if test="optTime != null" >
+          optTime,
+        </if>
+        <if test="optLogDesc != null" >
+          optLogDesc,
+        </if>
+        <if test="optResult != null" >
+          optResult,
+        </if>
+        <if test="failReason != null" >
+          failReason,
+        </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="operatorName != null" >
+          #{operatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="operatorIp != null" >
+          #{operatorIp},
+        </if>
+        <if test="optTime != null" >
+          #{optTime},
+        </if>
+        <if test="optLogDesc != null" >
+          #{optLogDesc},
+        </if>
+        <if test="optResult != null" >
+          #{optResult},
+        </if>
+        <if test="failReason != null" >
+          #{failReason},
+        </if>
+      </trim>
+  </insert>
+  <!-- 查询分页总记录数 -->
+  <select id="countOptLog" resultType="long">
+   ${sql}
+  </select>
+  <!-- 根据 -->
+  <select id="getOptLogById" resultType="com.cd.cdwoo.optLog.entity.OptLog" parameterType="String">
+   select * from cdwoo_opt_log
+   where
+    id = #{userid}
+  </select>
+ </mapper>
+ 

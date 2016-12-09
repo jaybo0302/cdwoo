@@ -14,7 +14,7 @@
 
   <!-- 扫描spring注解组件 -->
   <context:component-scan base-package="com.cd"></context:component-scan>
-
+  
   <!-- 引入jdbc,mail配置文件 -->
   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations">
@@ -27,7 +27,7 @@
 
   <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    <property name="dataSource" ref="dataSource" />
+    <property name="dataSource" ref="cdwooDataSource" />
   </bean>
 
   <!-- 事务管理传播配置:add、modify、delete开头默认开启事务 -->
@@ -87,16 +87,19 @@
     </property>
   </bean>
 
-  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+<!--   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
     <constructor-arg index="0" ref="sqlSessionFactory" />
-  </bean>
-
-  <!-- 扫描mapper路径 -->
-<!--   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    指定mapper路径
-    <property name="basePackage" value="com.fang.*.*.mapper" />
   </bean> -->
 
+  <!-- 创建SqlSessionFactory，同时指定数据源 -->
+<!--   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+    p:dataSource-ref="dynamicDataSource" p:configLocation="classpath:META-INF/mybatis/MyBatisConf.xml"
+    p:mapperLocations="classpath:mybatis/*.xml" /> -->
+
+  <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+    p:basePackage="com.cd.cdwoo.*.dao"  p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+    
   <!-- 系统日志、事务切面定义 -->
   <aop:config>
     <aop:pointcut id="dbPointCut" expression="execution(* com.cd..service.*.*(..))" />
@@ -118,5 +121,4 @@
   </aop:config>
   <!-- 系统日志切面对应的类 -->
   <bean id="serviceAop" class="com.cd.cdwoo.web.aop.ServiceAop" />
-
 </beans>

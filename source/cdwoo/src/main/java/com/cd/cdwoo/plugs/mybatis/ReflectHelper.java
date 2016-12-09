@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 /**
  * ReflectHelper java反射类
  * 
- * @author cd
+ * @author chendong
  */
 public class ReflectHelper {
   

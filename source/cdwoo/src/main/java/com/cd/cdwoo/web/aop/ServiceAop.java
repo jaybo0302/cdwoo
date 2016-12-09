@@ -15,7 +15,7 @@ import com.cd.cdwoo.util.CDWooLogger;
 
 /**
  * 业务逻辑层AOP，用于对业务逻辑层方法执行统一的AOP处理，如下： <li>显示操作结果提示信息</li> <li>记录操作日志</li>
- * 
+ * @author chendong
  */
 public class ServiceAop {
   

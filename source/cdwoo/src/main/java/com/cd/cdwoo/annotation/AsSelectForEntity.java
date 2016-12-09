@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * 在NewType.createDate字段加入<code>@AsSelectForEntity(as="cd",entity=News.calss)</code> <br>
  * 也就是在NewsSerivce中查询的时候会出现的别名<code>createDate as cd</code>而不会NewType自己的sql查询
  * 
- * @author pengmaokui
+ * @author chendong
  */
 @Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

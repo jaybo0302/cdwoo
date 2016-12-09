@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * service层操作结果(异常)
  * 
- * @author cd
+ * @author chendong
  */
 public class ServiceException extends RuntimeException implements Serializable {
   

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 数据库表名注解
  * 替换javax.persistence.Table 方便代码生成
  * 
- * @author cd
+ * @author chendong
  */
 @Target(TYPE)
 @Retention(RUNTIME)

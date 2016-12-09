@@ -10,5 +10,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
       
+  <!-- spring 注解默认配置  -->
+  <context:annotation-config />
+  <!-- mvc注解驱动 -->
+  <mvc:annotation-driven />
+  <!-- 扫描包 -->
   <context:component-scan base-package="com.cd"></context:component-scan>
 </beans>

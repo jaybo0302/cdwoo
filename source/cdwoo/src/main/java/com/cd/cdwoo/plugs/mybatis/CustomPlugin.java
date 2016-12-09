@@ -16,7 +16,7 @@ import org.apache.ibatis.plugin.Signature;
 /**
  * Mybatis插件类
  * 
- * @author cd
+ * @author chendong
  */
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class})})
 public class CustomPlugin implements Interceptor {

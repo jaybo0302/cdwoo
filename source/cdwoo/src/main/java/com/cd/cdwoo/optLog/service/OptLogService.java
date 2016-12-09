@@ -5,7 +5,7 @@ import com.cd.cdwoo.optLog.entity.OptLog;
 /**
  * 日志业务层
  * 
- * @author cd
+ * @author chendong
  */
 public interface OptLogService {
   

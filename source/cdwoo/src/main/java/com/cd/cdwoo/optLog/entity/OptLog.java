@@ -20,7 +20,7 @@ import com.cd.cdwoo.annotation.Table;
 /**
  * 日志实体bean
  * 
- * @author cd
+ * @author chendong
  */
 @Table(name = "cdwoo_opt_log")
 public class OptLog implements Serializable {

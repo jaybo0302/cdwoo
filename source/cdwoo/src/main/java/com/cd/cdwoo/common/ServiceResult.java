@@ -3,7 +3,7 @@ package com.cd.cdwoo.common;
 /**
  * service层操作结果
  * 
- * @author cd
+ * @author chendong
  */
 public class ServiceResult {
   

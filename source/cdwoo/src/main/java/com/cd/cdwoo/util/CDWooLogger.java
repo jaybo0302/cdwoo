@@ -9,7 +9,7 @@ import ch.qos.logback.classic.Logger;
 /**
  * logback封装类
  * 
- * @author cd
+ * @author chendong
  * 
  */
 public final class CDWooLogger {

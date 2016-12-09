@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 标注不需要查询出来的字段
  * 
- * @author cd
+ * @author chendong
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

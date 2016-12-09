@@ -67,7 +67,7 @@ public class ServiceAop {
       CDWooLogger.error("serviceResult为空");
       return;
     }
-    
+    //CDWooLogger.info("aop retrun success");
     // 记录操作日志
     OptLog optLog = createOptLog(serviceResult);
     optLogService.addOptLog(optLog);

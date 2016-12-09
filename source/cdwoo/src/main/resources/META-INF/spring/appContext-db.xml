@@ -37,6 +37,7 @@
       <tx:method name="modify*" propagation="REQUIRED" />
       <tx:method name="delete*" propagation="REQUIRED" />
       <tx:method name="query*" read-only="true" />
+      <tx:method name="insert*" read-only="true"/>
     </tx:attributes>
   </tx:advice>
 
@@ -113,9 +114,9 @@
         returning="serviceResult" />
       <aop:after-throwing method="atferException" pointcut="execution(* com.cd..*.modify*(..))"
         throwing="ex" />
-      <aop:after-returning method="afterReturn" pointcut="execution(* com.cd.*.delete*(..))"
+      <aop:after-returning method="afterReturn" pointcut="execution(* com.cd..*.delete*(..))"
         returning="serviceResult" />
-      <aop:after-throwing method="atferException" pointcut="execution(* com.cd.*.delete*(..))"
+      <aop:after-throwing method="atferException" pointcut="execution(* com.cd..*.delete*(..))"
         throwing="ex" />
     </aop:aspect>
   </aop:config>

@@ -3,7 +3,8 @@
 <html>
 <head>
 <% 
-  String documentName = (String)request.getSession().getAttribute("documentName");
+  String documentName = (String)request.getAttribute("documentName");
+  String contextPath = (String) request.getContextPath(); 
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>FlexPaper</title>         
@@ -15,14 +16,14 @@
         #flashContent { display:none; }
       </style> 
 </head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flexpaper_flash_debug.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/flexpaper_flash.js"></script>
+<script type="text/javascript" src="<%=contextPath %>/resources/js/flexpaper_flash_debug.js"></script>
+<script type="text/javascript" src="<%=contextPath %>/resources/js/flexpaper_flash.js"></script>
 <body>
   <div style="position:absolute;left:10px;top:10px;" class="flexContent">
           <a id="viewerPlaceHolder" style="width:1920px;height:1080px;display:block"></a>
           <script type="text/javascript">
            var fp = new FlexPaperViewer( 
-             '${pageContext.request.contextPath}/tool/FlexPaperViewer',
+             '<%=contextPath %>/tool/FlexPaperViewer',
              'viewerPlaceHolder', { config : {
              SwfFile : escape("/cdwooFile/document/<%=documentName%>"),
              Scale : 0.6, 

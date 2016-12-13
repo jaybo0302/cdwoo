@@ -100,12 +100,14 @@ public class ConvertSwf {
 	 * @return
 	 */
 	private static int office2PDF(String sourceFile, String destFile) {
-		ResourceBundle rb = ResourceBundle.getBundle("OpenOfficeService");
-		
+		/*ResourceBundle rb = ResourceBundle.getBundle("com/cd/cdwoo/conf/OpenOfficeService.properties");
 		String OpenOffice_HOME = rb.getString("OO_HOME");
 		String host_Str = rb.getString("oo_host");
-		String port_Str = rb.getString("oo_port");
-		try {
+		String port_Str = rb.getString("oo_port");*/
+	  String OpenOffice_HOME = PropertiesReaderUtils.getProperties("com/cd/cdwoo/conf/OpenOfficeService.properties", "OO_HOME");
+		String host_Str = PropertiesReaderUtils.getProperties("com/cd/cdwoo/conf/OpenOfficeService.properties", "oo_host");
+		String port_Str = PropertiesReaderUtils.getProperties("com/cd/cdwoo/conf/OpenOfficeService.properties", "oo_port");
+	  try {
 			File inputFile = new File(sourceFile);
 			if (!inputFile.exists()) {
 				return -1; // 找不到源文件 

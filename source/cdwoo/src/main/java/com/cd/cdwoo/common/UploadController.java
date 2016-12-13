@@ -69,13 +69,13 @@ public class UploadController {
   }
   
   @RequestMapping("getDocument")
-  public String getDocument(HttpServletRequest request) throws FileNotFoundException{
+  public String getDocument(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException{
     String documentName = request.getParameter("documentName");
     String fileRealPathDir = PropertiesReaderUtils.getProperties(Constants.CONSTANTS_PATH, "documentUploadPath");
     String toolPath = WebUtils.getRealPath(request.getServletContext(), "/tool");
     ConvertSwf swf = new ConvertSwf();
     String docSwfName = swf.beginConvert(fileRealPathDir, toolPath, documentName);
-    request.setAttribute("documentName", docSwfName);
+    request.setAttribute("documentName", documentName.replace(documentName.substring(documentName.indexOf(".")), ".swf"));
     return WebUtils.getRealPath(request.getServletContext(), "/") + "pages/testFlex/view_document";
   }
 }

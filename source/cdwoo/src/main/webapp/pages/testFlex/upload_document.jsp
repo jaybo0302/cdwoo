@@ -40,7 +40,7 @@
 	});
 	
 	$("#viewBt").click(function(){
-		$.get("<%=contextPath %>/upload/getDocument.do",{documentName:docName});
+		window.open("<%=contextPath %>/upload/getDocument.do?documentName="+docName); 
 	});
 </script>
 </html>

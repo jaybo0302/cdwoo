@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resin xmlns="http://caucho.com/ns/resin" xmlns:resin="urn:java:com.caucho.resin">
+	<log-handler name="" level="all" path="stdout:" timestamp="[%y-%m-%d %H:%M:%S.%s] {%{thread}} " />
+
+	<!-- - level='info' for production - 'fine' or 'finer' for development and troubleshooting -->
+	<logger name="com.caucho" level="info" />
+	<logger name="com.caucho.java" level="config" />
+	<logger name="com.caucho.loader" level="config" />
+
+	<class-loader>
+		<tree-loader path="${resin.root}/ext-lib" />
+	</class-loader>
+	
+	<cluster id="app-tier">
+		<!-- 该处填写解压后resin文件夹中的app-default.xml文件的绝对路径 -->
+		<resin:import path="D:/resin-4.0.35/conf/app-default.xml" />
+		<server id="" >
+			<http port="8080" />
+		</server>
+		<!-- 该处填写eclipse生成项目的地址('\'符号不需要转译成'/') -->
+		<host id="" root-directory="D:\workspace-git\cdwoo\source\cdwoo">
+			<web-app id="/cdwoo" root-directory="src/main/webapp" />
+            <web-app id="/cdwooFile" root-directory="E:\cdwooVirtualPath\"/>
+		</host>
+	</cluster>
+</resin>

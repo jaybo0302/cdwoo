@@ -11,4 +11,5 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
     
   <import resource="classpath:META-INF/spring/appContext-db.xml"></import>
+  <import resource="classpath:META-INF/spring/appContext-bean.xml"></import>
 </beans>

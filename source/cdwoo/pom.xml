@@ -174,7 +174,8 @@
       <artifactId>jackson-annotations</artifactId>
       <version>2.1.0</version>
     </dependency>
-<!--     <dependency>
+    <!-- 测试发现 jodconverter-2.2.1的包不支持docx的文件转换-->
+    <!-- <dependency>
       <groupId>com.artofsolving</groupId>
       <artifactId>jodconverter</artifactId>
       <version>2.2.1</version>
@@ -189,7 +190,7 @@
       <artifactId>jodconverter</artifactId>
       <version>2.2.2</version>
       <scope>system</scope>
-      <!-- 本地jar的路径,相对或者绝对都可以 -->
+      <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jodconverter-2.2.2.jar</systemPath>
     </dependency>
     <dependency>
@@ -197,7 +198,7 @@
       <artifactId>jodconverter-cli</artifactId>
       <version>2.2.2</version>
       <scope>system</scope>
-      <!-- 本地jar的路径,相对或者绝对都可以 -->
+      <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jodconverter-cli-2.2.2.jar</systemPath>
     </dependency>
     <dependency>
@@ -205,7 +206,7 @@
       <artifactId>juh</artifactId>
       <version>3.0.1</version>
       <scope>system</scope>
-      <!-- 本地jar的路径,相对或者绝对都可以 -->
+      <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\juh-3.0.1.jar</systemPath>
      </dependency>
      <dependency>
@@ -213,7 +214,7 @@
       <artifactId>jurt</artifactId>
       <version>3.0.1</version>
       <scope>system</scope>
-      <!-- 本地jar的路径,相对或者绝对都可以 -->
+      <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jurt-3.0.1.jar</systemPath>
      </dependency>
      <dependency>
@@ -221,7 +222,7 @@
       <artifactId>ridl</artifactId>
       <version>3.0.1</version>
       <scope>system</scope>
-      <!-- 本地jar的路径,相对或者绝对都可以 -->
+      <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\ridl-3.0.1.jar</systemPath>
      </dependency>
      <dependency>
@@ -229,7 +230,7 @@
       <artifactId>unoil</artifactId>
       <version>3.0.1</version>
       <scope>system</scope>
-      <!-- 本地jar的路径,相对或者绝对都可以 -->
+      <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\unoil-3.0.1.jar</systemPath>
      </dependency>
   </dependencies>

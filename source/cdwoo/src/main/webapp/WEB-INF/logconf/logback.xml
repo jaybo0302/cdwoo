@@ -6,19 +6,20 @@
       <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{80} - %msg%n</pattern>
     </layout>
   </appender>
-<!--   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>logs/bdp.core.log</file>
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/www/webdev/logs/resin/logs/app-cdwoo.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>logs/bdp.core.%d.log</fileNamePattern>
+      <fileNamePattern>/www/webdev/logs/resin/logs/app-cdwoo.%d.log</fileNamePattern>
       <maxHistory>30</maxHistory>
     </rollingPolicy>
     <layout class="ch.qos.logback.classic.PatternLayout">
       <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{80} - %msg%n</Pattern>
     </layout>
-  </appender> -->
+  </appender>
   <logger name="com.cd.cdwoo">
     <level value="DEBUG" />
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
   </logger>
-  
+
 </configuration>

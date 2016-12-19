@@ -76,6 +76,7 @@ public class UploadController {
     ConvertSwf swf = new ConvertSwf();
     String docSwfName = swf.beginConvert(fileRealPathDir, toolPath, documentName);
     request.setAttribute("documentName", documentName.replace(documentName.substring(documentName.indexOf(".")), ".swf"));
-    return WebUtils.getRealPath(request.getServletContext(), "/") + "pages/testFlex/view_document";
+    CDWooLogger.info(WebUtils.getRealPath(request.getServletContext(), File.separator));
+    return "pages/testFlex/view_document";
   }
 }

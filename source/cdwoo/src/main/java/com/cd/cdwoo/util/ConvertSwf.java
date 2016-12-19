@@ -83,7 +83,7 @@ public class ConvertSwf {
 				+ "\" -s flashversion=9 ";
 		String commandLinux = "/usr/local/swftools/bin/pdf2swf -s languagedir=/usr/local/xpdf-chinese-simplified -T 9 -s poly2bitmap -s zoom=150 -s flashversion=9 "+sourceFile+" -o "+outFile;
 		try {
-			Process process = Runtime.getRuntime().exec(command);
+			Process process = Runtime.getRuntime().exec(commandLinux);
 			System.out.println(loadStream(process.getInputStream()));
 			System.err.println(loadStream(process.getErrorStream()));
 			System.out.println(loadStream(process.getInputStream()));

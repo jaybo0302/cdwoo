@@ -30,5 +30,6 @@
 	<classpathentry exported="true" kind="lib" path="D:/workspace-git/cdwoo/source/cdwoo/src/main/webapp/WEB-INF/lib/jurt-3.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/workspace-git/cdwoo/source/cdwoo/src/main/webapp/WEB-INF/lib/ridl-3.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/workspace-git/cdwoo/source/cdwoo/src/main/webapp/WEB-INF/lib/unoil-3.0.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

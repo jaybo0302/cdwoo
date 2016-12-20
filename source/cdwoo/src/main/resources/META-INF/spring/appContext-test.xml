@@ -19,4 +19,14 @@
     <bean id ="animal" class="com.cd.cdwoo.test.spring.factoryBean.AnimalFactoryBean">
       <property name="animal" value="tiger" />
     </bean>
+    
+    <bean id="common0" class="com.cd.cdwoo.test.spring.beanPostProcess.CommonBean" init-method="initMethod">
+      <property name="commonName" value="common0" />
+    </bean>
+    <bean id="common1" class="com.cd.cdwoo.test.spring.beanPostProcess.CommonBean" init-method="initMethod">
+      <property name="commonName" value="common1" />
+    </bean>
+    <bean id="postProcessorBean" class="com.cd.cdwoo.test.spring.beanPostProcess.PostProcessorBean" />
+    <bean id="factoryPostProcessorBean" class="com.cd.cdwoo.test.spring.beanPostProcess.FactoryPostProcessorBean" />
+    <bean class="com.cd.cdwoo.test.spring.beanPostProcess.InstantiationAwareBeanPostProcessorBean" />
 </beans>

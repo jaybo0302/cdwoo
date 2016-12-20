@@ -12,6 +12,9 @@ import org.springframework.beans.factory.FactoryBean;
 
 /**
  * @author chendong
+ *　1、getObject()方法是最重要的，控制Bean的实例化过程
+ *　2、getObjectType()方法获取接口返回的实例的class
+ *　3、isSingleton()方法获取该Bean是否为一个单例的Bean
  */
 public class AnimalFactoryBean implements FactoryBean<Animal> {
 

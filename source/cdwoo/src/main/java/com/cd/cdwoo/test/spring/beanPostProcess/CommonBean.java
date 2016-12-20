@@ -10,7 +10,6 @@ package com.cd.cdwoo.test.spring.beanPostProcess;
 
 /**
  * @author chendong
- * test change user
  */
 public class CommonBean {
   private String commonName;

@@ -255,58 +255,62 @@
 		},
 		crossDomain : true,
 	}).success(function(res) {
-		// Ajax Submit
-	    $.ajax({
-	      url: res.data.url,
-	      type : 'PUT',
-		  data : file,
-		  processData : false,
-		  contentType : file.type,
-		  headers : {
-			'x-amz-acl' : 'public-read'
-		  },
-		  crossDomain : true,
-	      xhr: function(){
-	        var xhrobj = $.ajaxSettings.xhr();
-	        if(xhrobj.upload){
-	          xhrobj.upload.addEventListener('progress', function(event) {
-	            var percent = 0;
-	            var position = event.loaded || event.position;
-	            var total = event.total || event.totalSize;
-	            if(event.lengthComputable){
-	              percent = Math.ceil(position / total * 100);
-	            }
-	            widget.settings.onUploadProgress.call(widget.element, widget.queuePos, percent);
-	          }, false);
-	        }
-	        return xhrobj;
-	      },
-	      success: function (data, message, xhr){
-       		  $.ajax({
-       			  url: '//itbs.light.fang.com/olapservice/xs3Upload/checkXS3FileType.do',
-       			  //url : 'http://local.fang.com:8080/olapservice/xs3Upload/checkXS3FileType.do',
-       			  type: 'POST',
-      		      data : {
-      		    	  filePath : res.data.url.split("?")[0],
-      		      },
-      		      dataType : 'jsonp'
-       		  }).success(function(checkResult){
-       			if (checkResult.hasErrors) {
-					widget.settings.onUploadError.call(widget.element, widget.queuePos, checkResult.errorMessage);
-				} else {
-					var fileName = file.name;
-			    	var filePath = res.data.url.split("?")[0];
-			        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data, fileName, filePath);
-				}
-			  });
-	      },
-	      error: function (xhr, status, errMsg){
-	        widget.settings.onUploadError.call(widget.element, widget.queuePos, errMsg);
-	      },
-	      complete: function(xhr, textStatus){
-	        widget.processQueue();
-	      }
-	    });
+		if(res.hasErrors){
+			widget.settings.onUploadError.call(widget.element, widget.queuePos, res.errorMessage);
+		}else{
+			// Ajax Submit
+		      xhrAbort = $.ajax({
+		      url: res.data.url,
+		      type : 'PUT',
+			  data : file,
+			  processData : false,
+			  contentType : file.type,
+			  headers : {
+				'x-amz-acl' : 'public-read'
+			  },
+			  crossDomain : true,
+		      xhr: function(){
+		        var xhrobj = $.ajaxSettings.xhr();
+		        if(xhrobj.upload){
+		          xhrobj.upload.addEventListener('progress', function(event) {
+		            var percent = 0;
+		            var position = event.loaded || event.position;
+		            var total = event.total || event.totalSize;
+		            if(event.lengthComputable){
+		              percent = Math.ceil(position / total * 100);
+		            }
+		            widget.settings.onUploadProgress.call(widget.element, widget.queuePos, percent);
+		          }, false);
+		        }
+		        return xhrobj;
+		      },
+		      success: function (data, message, xhr){
+	       		  $.ajax({
+	       			  url: '//itbs.light.fang.com/olapservice/xs3Upload/checkXS3FileType.do',
+	       			  //url : 'http://local.fang.com:8080/olapservice/xs3Upload/checkXS3FileType.do',
+	       			  type: 'POST',
+	      		      data : {
+	      		    	  filePath : res.data.url.split("?")[0],
+	      		      },
+	      		      dataType : 'jsonp'
+	       		  }).success(function(checkResult){
+	       			if (checkResult.hasErrors) {
+						widget.settings.onUploadError.call(widget.element, widget.queuePos, checkResult.errorMessage);
+					} else {
+						var fileName = file.name;
+				    	var filePath = res.data.url.split("?")[0];
+				        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data, fileName, filePath);
+					}
+				  });
+		      },
+		      error: function (xhr, status, errMsg){
+		        widget.settings.onUploadError.call(widget.element, widget.queuePos, errMsg);
+		      },
+		      complete: function(xhr, textStatus){
+		        widget.processQueue();
+		      }
+		    });
+		}
 	}).error(function() {
 		console.log("get url failed");
 		hook(false, "upload failed");

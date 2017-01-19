@@ -236,6 +236,28 @@
       <!-- 本地jar的路径,绝对路径 -->
       <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\unoil-3.0.1.jar</systemPath>
      </dependency>
+     
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpmime</artifactId>
+        <version>4.3.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.6</version>
+    </dependency>
   </dependencies>
   
   <build>

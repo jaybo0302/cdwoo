@@ -86,13 +86,17 @@
   </dir>
 </body>
 <script type="text/javascript">
+    var xhrAbort;
 	$("#upload").click(function(){
 		$("#uploadModal").modal("show");
-	})
-	
+	});
+	function cancleUpload(){
+		alert("		cancle upload");
+		xhrAbort.abort();
+	}
     $('#drag-and-drop-zone').dmUploader({
         dataType: 'json',
-        allowedTypes: 'video/*',
+        allowedTypes: '*',
         extFilter: 'mp4;mkv;rmvb;mov;wmv;flv;3gp;avi;rm',
         maxFileSize: 1024000000,
         url:"http://local.fang.com:8080/cdwoo/upload/uploadDocument.do",

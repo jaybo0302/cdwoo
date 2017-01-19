@@ -38,7 +38,8 @@ public class UploadController {
   public CtResult uploadDocument(HttpServletRequest request, HttpServletResponse response) throws IOException{
     String fileRealPathDir = null;
     /** 构建文件保存的目录 **/
-    fileRealPathDir = PropertiesReaderUtils.getProperties(Constants.CONSTANTS_PATH, "documentUploadPath");
+    //fileRealPathDir = PropertiesReaderUtils.getProperties(Constants.CONSTANTS_PATH, "documentUploadPath");
+    fileRealPathDir = "D://uploadVideo";
     if (fileRealPathDir.equals("documentUploadPath")) {
       CDWooLogger.error("get documentUploadPath error!!");
       return CtResult.failure("get documentUploadPath error!!");
@@ -50,7 +51,7 @@ public class UploadController {
       documentSaveFile.mkdirs();
     }
     /** 页面控件的文件流 **/
-    MultipartFile multipartFile = multipartRequest.getFile("documentFile");
+    MultipartFile multipartFile = multipartRequest.getFile("file");
     if (multipartFile == null || multipartFile.getSize() == 0) {
       return CtResult.failure("choose some file to upload");
     }

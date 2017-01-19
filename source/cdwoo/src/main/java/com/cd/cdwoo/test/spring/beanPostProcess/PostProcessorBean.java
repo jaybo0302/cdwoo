@@ -7,6 +7,11 @@
  */
 package com.cd.cdwoo.test.spring.beanPostProcess;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -30,6 +35,10 @@ public class PostProcessorBean implements BeanPostProcessor {
   @Override
   public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
     System.err.println("Enter PostProcessorBean.postProcessAfterInitialization()");
+    Map<String, String> map = new HashMap<String, String>();
+    map.put("shabi", "0fly");
+    List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+    list.add(map);
     return bean;
   }
   

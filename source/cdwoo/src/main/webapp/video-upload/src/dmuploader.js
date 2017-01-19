@@ -282,9 +282,23 @@
 	        return xhrobj;
 	      },
 	      success: function (data, message, xhr){
-	    	var fileName = file.name;
-	    	var filePath = res.data.url.split("?")[0];
-	        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data, fileName, filePath);
+       		  $.ajax({
+       			  url: '//itbs.light.fang.com/olapservice/xs3Upload/checkXS3FileType.do',
+       			  //url : 'http://local.fang.com:8080/olapservice/xs3Upload/checkXS3FileType.do',
+       			  type: 'POST',
+      		      data : {
+      		    	  filePath : res.data.url.split("?")[0],
+      		      },
+      		      dataType : 'jsonp'
+       		  }).success(function(checkResult){
+       			if (checkResult.hasErrors) {
+					widget.settings.onUploadError.call(widget.element, widget.queuePos, checkResult.errorMessage);
+				} else {
+					var fileName = file.name;
+			    	var filePath = res.data.url.split("?")[0];
+			        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data, fileName, filePath);
+				}
+			  });
 	      },
 	      error: function (xhr, status, errMsg){
 	        widget.settings.onUploadError.call(widget.element, widget.queuePos, errMsg);

@@ -258,15 +258,12 @@
 		// Ajax Submit
 	    $.ajax({
 	      url: res.data.url,
-	      type: "PUT",
-	      dataType: widget.settings.dataType,
-	      data: file,
-	      cache: false,
-	      contentType: false,
-	      processData: false,
-	      forceSync: false,
-	      headers : {
-				'x-amz-acl' : 'public-read'
+	      type : 'PUT',
+		  data : file,
+		  processData : false,
+		  contentType : file.type,
+		  headers : {
+			'x-amz-acl' : 'public-read'
 		  },
 		  crossDomain : true,
 	      xhr: function(){
@@ -282,11 +279,12 @@
 	            widget.settings.onUploadProgress.call(widget.element, widget.queuePos, percent);
 	          }, false);
 	        }
-
 	        return xhrobj;
 	      },
 	      success: function (data, message, xhr){
-	        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data);
+	    	var fileName = file.name;
+	    	var filePath = res.data.url.split("?")[0];
+	        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data, fileName, filePath);
 	      },
 	      error: function (xhr, status, errMsg){
 	        widget.settings.onUploadError.call(widget.element, widget.queuePos, errMsg);

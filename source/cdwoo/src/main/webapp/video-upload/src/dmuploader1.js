@@ -263,7 +263,8 @@
         return xhrobj;
       },
       success: function (data, message, xhr){
-        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data);
+    	var fileName = file.name;
+        widget.settings.onUploadSuccess.call(widget.element, widget.queuePos, data, fileName);
       },
       error: function (xhr, status, errMsg){
     	 

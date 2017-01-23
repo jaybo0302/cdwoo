@@ -1,8 +1,6 @@
 package com.cd.cdwoo.plugs.mybatis;
-
 import java.sql.Connection;
 import java.util.Properties;
-
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
@@ -12,7 +10,6 @@ import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
-
 /**
  * Mybatis插件类
  * 
@@ -20,12 +17,10 @@ import org.apache.ibatis.plugin.Signature;
  */
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class})})
 public class CustomPlugin implements Interceptor {
-  
   /**
    * 是否显示sql
    */
   private String isShowSql = "";
-  
   /**
    * getter
    * 
@@ -34,7 +29,6 @@ public class CustomPlugin implements Interceptor {
   public String getIsShowSql() {
     return isShowSql;
   }
-  
   /**
    * setter
    * 
@@ -44,7 +38,6 @@ public class CustomPlugin implements Interceptor {
   public void setIsShowSql(String isShowSql) {
     this.isShowSql = isShowSql;
   }
-  
   /**
    * mybatis插件类中操作(1.显示sql)
    * 
@@ -64,18 +57,12 @@ public class CustomPlugin implements Interceptor {
         String sql = boundSql.getSql();
         System.out.println("sql:" + sql);
       }
-      
     }
     return ivk.proceed();
   }
-  
   public Object plugin(Object arg0) {
-    // TODO Auto-generated method stub
     return Plugin.wrap(arg0, this);
   }
-  
   public void setProperties(Properties properties) {
-    // TODO Auto-generated method stub
-    
   }
 }

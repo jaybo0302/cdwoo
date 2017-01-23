@@ -6,27 +6,16 @@
  * Copyright (C) 2003-2017 搜房资讯有限公司-版权所有
  */
 package com.cd.cdwoo.xs3upload;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.alibaba.fastjson.JSONObject;
 import com.cd.cdwoo.util.CDWooLogger;
-
 /**
  * @author chendong
  */

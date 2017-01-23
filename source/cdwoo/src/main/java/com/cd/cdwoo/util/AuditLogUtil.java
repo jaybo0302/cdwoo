@@ -7,11 +7,8 @@
  * Copyright (C) 2003-2016 搜房资讯有限公司-版权所有
  */
 package com.cd.cdwoo.util;
-
 import org.slf4j.LoggerFactory;
-
 import ch.qos.logback.classic.Logger;
-
 /**
  * 项目自查辅助类.
  * @author zhaolingfei
@@ -56,7 +53,6 @@ public class AuditLogUtil {
     strLog.append(" ] ms");
     auditLog.info(strLog.toString());
   }
-  
   /**
    * <p>
    * 连接池爆满.

@@ -6,24 +6,20 @@
  * Copyright (C) 2003-2015 搜房资讯有限公司-版权所有
  */
 package com.cd.cdwoo.common;
-
 /**
  * controller层操作结果
  * 
  * @author chendong
  */
 public class CtResult {
-  
   /**
    * data
    */
   private Object data;
-  
   /**
    * 错误消息
    */
   private String errorMessage;
-  
   /**
    * 是否有错误
    */
@@ -41,7 +37,6 @@ public class CtResult {
     result.hasErrors = false;
     return result;
   }
-  
   /**
    * 操作成功
    * 
@@ -52,7 +47,6 @@ public class CtResult {
     result.hasErrors = false;
     return result;
   }
-  
   /**
    * 操作失败
    * 
@@ -66,7 +60,6 @@ public class CtResult {
     result.errorMessage = message;
     return result;
   }
-  
   /**
    * 
    * @return data
@@ -74,7 +67,6 @@ public class CtResult {
   public Object getData() {
     return data;
   }
-  
   /**
    * 
    * @return errorMessage
@@ -82,7 +74,6 @@ public class CtResult {
   public String getErrorMessage() {
     return errorMessage;
   }
-  
   /**
    * @param errorMessage
    *        set errorMessage
@@ -90,7 +81,6 @@ public class CtResult {
   public void setErrorMessage(String errorMessage) {
     this.errorMessage = errorMessage;
   }
-  
   /**
    * 
    * @return hasErrors
@@ -98,7 +88,6 @@ public class CtResult {
   public boolean isHasErrors() {
     return hasErrors;
   }
-  
   /**
    * 
    * @return !hasErrors

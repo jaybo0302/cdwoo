@@ -1,54 +1,30 @@
 package com.cd.cdwoo.xs3upload;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.httpclient.util.DateUtil;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.DateUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import com.alibaba.fastjson.JSONObject;
 import com.cd.cdwoo.util.CDWooLogger;
 import com.cd.cdwoo.util.PropertiesReaderUtils;
@@ -56,7 +32,6 @@ import com.cd.cdwoo.util.PropertiesReaderUtils;
  * @author chendong
  */
 public class XS3UploadUtil {
-
   /**
    * xs3ak
    */
@@ -73,26 +48,19 @@ public class XS3UploadUtil {
 	 * upload bucket name
 	 */
 	public static final String XS3BUCKETNAME =PropertiesReaderUtils.getProperties("com/fang/olapservice/core/xs3/xs3upload.properties", "XS3BUCKETNAME");
-	
 	public static final String SUCCESSCODE = "100";
-	
 	public static final String ERRORCODE = "102";
-
 	public static final String GETFILETYPEHOST = PropertiesReaderUtils.getProperties("com/fang/olapservice/core/xs3/xs3upload.properties", "GETFILETYPEHOST");
-	/**
-	 * 
   /**
    * 读取文件指定字节长度
    */
   private static final Integer BYTESIZE = 1024;
-  
 	public static String sign4new(String putPolicy) throws Exception{
     String encodePutPolicy = EncodeUtils.urlsafeEncode(putPolicy);
     String singSk = EncryptUtil.sha1Hex(encodePutPolicy.getBytes(), XS3SECRETKEY);//签名
     String skValue = EncodeUtils.urlsafeEncode(singSk);//Base64编码
     return XS3ACCESSKEY+":"+skValue+":"+encodePutPolicy;
   }
-  
   /**
    * 
    * @param data data
@@ -108,7 +76,6 @@ public class XS3UploadUtil {
     }
     return base64;
   }
-  
   public static String httpPost(String url, Map<String, String> params, Map<String, String> headMap, File file) {
     String response = "";
     HttpPost httpPost = null;
@@ -118,14 +85,11 @@ public class XS3UploadUtil {
     try {
         httpPost = new HttpPost(url);
         List<NameValuePair> paramsList = new ArrayList<NameValuePair>();
-
         if (file != null) {
             MultipartEntityBuilder mEntityBuilder = MultipartEntityBuilder.create();
-
             FileBody fileBody = new FileBody(file, ContentType.APPLICATION_OCTET_STREAM, file.getName());
             mEntityBuilder.addPart("file", fileBody);
             mEntityBuilder.addTextBody("desc", file.getName());
-
             if (params != null && params.size() > 0) {
                 for(Map.Entry<String, String> entry:params.entrySet()){
                     mEntityBuilder.addTextBody(entry.getKey(), entry.getValue(), ContentType.create("text/plain", Charset.forName("UTF-8")));
@@ -144,7 +108,6 @@ public class XS3UploadUtil {
             }
             httpPost.setEntity(he);
         }
-
         if (headMap != null && headMap.size() > 0) {
             for(Map.Entry<String, String> entry:headMap.entrySet()){
                 httpPost.setHeader(entry.getKey(),entry.getValue());
@@ -156,7 +119,6 @@ public class XS3UploadUtil {
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(30000).setConnectTimeout(30000).build();//设置请求和传输超时时间
         httpPost.setConfig(requestConfig);
         ht = hc.execute(httpPost);
-
         HttpEntity het = ht.getEntity();
         is = het.getContent();
         br = new BufferedReader(new InputStreamReader(is, "utf8"));
@@ -187,8 +149,6 @@ public class XS3UploadUtil {
           }
       }
   }
-  
-  
   /**
    * java restful上传文件方法。
    * @param file 文件
@@ -210,8 +170,6 @@ public class XS3UploadUtil {
     params.put("x:position", "this is position");
     return httpPost("http://chendong.up9.v1.wcsapi.com/file/upload", params, null, file);
   }
-  
-  
   public static void main(String[] args) throws Exception {
     /*File file = new File("C:\\Users\\user\\Pictures\\500x500_90_1.jpg");
     uploadFile2CNC(file, "jpg");*/
@@ -223,8 +181,6 @@ public class XS3UploadUtil {
     System.out.println(sign + "\n" + UUID.randomUUID().toString()+".jpg");*/
     //deleteFile("http://s3.bj.xs3cnc.com/tel400/bdp.core.hb/8ad9d0fbc3204cc08de5f75bfd0d52cc.mp4");
   }
-  
-  
   /**
    * 获取上传token
    * @param businessLine 业务线名称
@@ -240,7 +196,6 @@ public class XS3UploadUtil {
     String sign = sign4new(JSONObject.toJSONString(map));
     return sign;
   }
-  
   /**
    * 删除方法
    * @param key 文件名称

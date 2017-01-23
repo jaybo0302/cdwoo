@@ -90,17 +90,17 @@
 	$("#upload").click(function(){
 		$("#uploadModal").modal("show");
 	});
+	//取消上传操作
 	function cancleUpload(){
-		alert("		cancle upload");
 		xhrAbort.abort();
+	    $("#demo-files").empty();
+	    $("#demo-files").append('<span class="demo-note">No Files have been selected/droped yet...</span>');
 	}
     $('#drag-and-drop-zone').dmUploader({
         dataType: 'json',
         allowedTypes: '*',
         extFilter: 'mp4;mkv;rmvb;mov;wmv;flv;3gp;avi;rm',
         maxFileSize: 1024000000,
-        url:"http://local.fang.com:8080/cdwoo/upload/uploadDocument.do",
-        /*extFilter: 'jpg;png;gif',*/
         onInit: function(){
           $.danidemo.addLog('#demo-debug', 'default', 'Plugin initialized correctly');
         },

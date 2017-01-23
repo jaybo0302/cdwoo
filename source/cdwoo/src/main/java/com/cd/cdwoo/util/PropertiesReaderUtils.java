@@ -1,5 +1,4 @@
 package com.cd.cdwoo.util;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,24 +6,20 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-
 /**
  * properties文件读取工具类
  * 
  * @author chendong
  */
 public final class PropertiesReaderUtils {
-  
   /**
    * 私有无参构造
    */
   private PropertiesReaderUtils() {
     
   }
-  
   /**
    * 获取配置文件单独key值内容
    * 
@@ -58,7 +53,6 @@ public final class PropertiesReaderUtils {
     }
     return value;
   }
-  
   /**
    * 获取配置文件单独key值内容,如果为空，返回默认值
    * 
@@ -95,7 +89,6 @@ public final class PropertiesReaderUtils {
     }
     return value;
   }
-  
   /**
    * 获取配置文件单独key值内容
    * 
@@ -124,7 +117,6 @@ public final class PropertiesReaderUtils {
     }
     return properties.getProperty(key);
   }
-  
   /**
    * 获取配置文件行值key value对
    * 

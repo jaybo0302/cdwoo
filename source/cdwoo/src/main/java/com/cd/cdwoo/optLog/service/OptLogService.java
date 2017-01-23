@@ -1,14 +1,11 @@
 package com.cd.cdwoo.optLog.service;
-
 import com.cd.cdwoo.optLog.entity.OptLog;
-
 /**
  * 日志业务层
  * 
  * @author chendong
  */
 public interface OptLogService {
-  
   /**
    * 增加操作日志
    * 
@@ -16,7 +13,6 @@ public interface OptLogService {
    *        要增加的操作日志
    */
   void addOptLog(OptLog optLog);
-  
   /**
    * 查询操作日志。
    * 
@@ -24,5 +20,4 @@ public interface OptLogService {
    * @return pagedResult
    */
   OptLog queryById(String id);
-  
 }

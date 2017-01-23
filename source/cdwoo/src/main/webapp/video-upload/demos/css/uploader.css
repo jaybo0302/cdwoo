@@ -172,3 +172,14 @@
     line-height: 34px;
     font-size: 14px;
 }
+
+.btn-cancle
+{
+	border: 2px dotted #A5A5C7;
+	width: 60px;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	margin-top: -15px;
+	background-color: #4169E1;
+}

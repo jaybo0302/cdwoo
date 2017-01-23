@@ -22,7 +22,7 @@
 		                       '<div class="progress-bar" role="progressbar" style="width: 0%;">'+
 		                       '</div>'+
 		                   '</div>'+
-		                   '<button onclick="cancleUpload();">取消</button>'+
+		                   '<button class="btn-cancle" onclick="cancleUpload();">取消</button>'+
 		               '</div>';
 		               
 		var i = $(id).attr('file-counter');

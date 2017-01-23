@@ -1,26 +1,20 @@
 package com.cd.cdwoo.xs3upload;
-
 import org.apache.commons.codec.binary.Base64;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
 /**
  * URLEncoding is the alternate base64 encoding defined in RFC 4648. It is
  * typically used in URLs and file names.
  */
 public class EncodeUtils {
-
     public static byte[] urlsafeEncodeBytes(byte[] src) {
         if (src.length % 3 == 0) {
             return encodeBase64Ex(src);
         }
-
         byte[] b = encodeBase64Ex(src);
         if (b.length % 4 == 0) {
             return b;
         }
-
         int pad = 4 - b.length % 4;
         byte[] b2 = new byte[b.length + pad];
         System.arraycopy(b, 0, b2, 0, b.length);
@@ -30,7 +24,6 @@ public class EncodeUtils {
         }
         return b2;
     }
-
     public static byte[] urlsafeBase64Decode(String encoded) {
         byte[] rawbs = encoded.getBytes();
         for (int i = 0; i < rawbs.length; i++) {
@@ -42,7 +35,6 @@ public class EncodeUtils {
         }
         return Base64.decodeBase64(rawbs);
     }
-
     public static String urlsafeDecodeString(String encoded) {
         String str = null;
         try {
@@ -52,7 +44,6 @@ public class EncodeUtils {
         }
         return str;
     }
-
     public static String urlsafeEncodeString(byte[] src) {
         String str = null;
         try {
@@ -62,7 +53,6 @@ public class EncodeUtils {
         }
         return str;
     }
-
     public static String urlsafeEncode(String text) {
         String str = null;
         try {
@@ -72,7 +62,6 @@ public class EncodeUtils {
         }
         return str;
     }
-
     // replace '/' with '_', '+" with '-'
     private static byte[] encodeBase64Ex(byte[] src) {
         // urlsafe version is not supported in version 1.4 or lower.
@@ -87,7 +76,6 @@ public class EncodeUtils {
         }
         return b64;
     }
-
     public static String escapeFileKey(String fileKey) {
         try {
             fileKey = URLEncoder.encode(fileKey, "UTF-8");

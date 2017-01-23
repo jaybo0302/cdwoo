@@ -6,33 +6,27 @@
  * Copyright (C) 2003-2016 搜房资讯有限公司-版权所有
  */
 package com.cd.cdwoo.common;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
-
 import com.cd.cdwoo.util.CDWooLogger;
 import com.cd.cdwoo.util.ConvertSwf;
 import com.cd.cdwoo.util.PropertiesReaderUtils;
-
 /**
  * @author chendong
  */
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
-  
   @ResponseBody
   @RequestMapping("/uploadDocument")
   public CtResult uploadDocument(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -68,7 +62,6 @@ public class UploadController {
     request.setAttribute("documentName", fileName);
     return CtResult.success(fileName);
   }
-  
   @RequestMapping("getDocument")
   public String getDocument(HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException{
     String documentName = request.getParameter("documentName");

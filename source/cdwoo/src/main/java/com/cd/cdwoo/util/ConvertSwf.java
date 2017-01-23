@@ -1,17 +1,14 @@
 package com.cd.cdwoo.util;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ConnectException;
-
 import com.artofsolving.jodconverter.DocumentConverter;
 import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
-
 /**
  * 将文件转成swf格式
  * 
@@ -19,7 +16,6 @@ import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConv
  * 
  */
 public class ConvertSwf {
-
 	/**
 	 * 入口方法-通过此方法转换文件至swf格式
 	 * @param filePath	上传文件所在文件夹的绝对路径
@@ -34,13 +30,10 @@ public class ConvertSwf {
 		final String XLSX = ".xlsx";
 		final String PDF = ".pdf";
 		final String SWF = ".swf";
-		
 		//windows下的写法
 		final String TOOL = "pdf2swf.exe";
-		
 		//linux下的写法
 		//final String TOOL = "";
-		
 		String outFile = "";
 		String fileNameOnly = "";
 		String fileExt = "";
@@ -51,7 +44,6 @@ public class ConvertSwf {
 		}
 		String inputFile = filePath + File.separator + fileName;
 		String outputFile = "";
-
 		//如果是office文档，先转为pdf文件
 		if (fileExt.equals(DOC) || fileExt.equals(DOCX) || fileExt.equals(XLS)
 				|| fileExt.equals(XLSX)) {
@@ -60,7 +52,6 @@ public class ConvertSwf {
 			inputFile = outputFile;
 			fileExt = PDF;
 		}
-
 		if (fileExt.equals(PDF)) {
 			String toolFile = dirName + File.separator + TOOL;
 			outputFile = filePath + File.separator + fileNameOnly + SWF;
@@ -69,7 +60,6 @@ public class ConvertSwf {
 		}
 		return outFile;
 	}
-
 	/**
 	 * 将pdf文件转换成swf文件
 	 * @param sourceFile pdf文件绝对路径
@@ -91,7 +81,6 @@ public class ConvertSwf {
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * office文档转pdf文件
 	 * @param sourceFile	office文档绝对路径
@@ -130,11 +119,9 @@ public class ConvertSwf {
 			DocumentConverter converter = new OpenOfficeDocumentConverter(
 					connection);
 			converter.convert(inputFile, outputFile);
-
 			// 关闭连接和服务
 			connection.disconnect();
 			pro.destroy();
-
 			return 0;
 		} catch (FileNotFoundException e) {
 			System.out.println("文件未找到！");
@@ -148,7 +135,6 @@ public class ConvertSwf {
 		}
 		return 1;
 	}
-	
 	static String loadStream(InputStream in) throws IOException{
 		int ptr = 0;
 		in = new BufferedInputStream(in);
@@ -159,7 +145,6 @@ public class ConvertSwf {
 		}
 		return buffer.toString();
 	}
-
   public static void main(String[] args) {
     office2PDF("E:\\cdwooVirtualPath\\document\\0a73fb7c-7dc7-4ff7-bb23-ee41aa6c0798.docx", "E:\\cdwooVirtualPath\\document\\0a73fb7c-7dc7-4ff7-bb23-ee41aa6c0798.pdf");
   }

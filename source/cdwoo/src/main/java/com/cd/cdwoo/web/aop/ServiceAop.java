@@ -1,60 +1,49 @@
 package com.cd.cdwoo.web.aop;
-
 import java.util.Calendar;
 import java.util.Date;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.cd.cdwoo.common.ServiceException;
 import com.cd.cdwoo.common.ServiceResult;
 import com.cd.cdwoo.optLog.entity.OptLog;
 import com.cd.cdwoo.optLog.service.OptLogService;
 import com.cd.cdwoo.util.CDWooLogger;
-
 /**
  * 业务逻辑层AOP，用于对业务逻辑层方法执行统一的AOP处理，如下： <li>显示操作结果提示信息</li> <li>记录操作日志</li>
  * @author chendong
  */
 public class ServiceAop {
-  
   /**
    * 日志内部类，用于对业务逻辑层方法执行统一的AOP处理，
    * SUCCESS , FAIL
    */
   final class OptResult {
-    
     /**
      * 成功
      * SUCCESS
      */
     static final String SUCCESS = "操作成功";
-    
     /**
      * 失败
      * FAIL
      */
     static final String FAIL = "操作失败";
-    
     /**
      * 构造方法私有化, 避免外部将其调用
      */
     private OptResult() {
     }
   }
-  
   /**
    * 操作结果保留长度
    */
   private static final int OPT_DESC_RESERVE_LENGTH = 252;
-  
   /**
    * 操作日志业务逻辑接口
    */
   @Autowired
   private OptLogService optLogService;
-  
   /**
    * 拦截业务逻辑方法成功执行
    * 
@@ -72,7 +61,6 @@ public class ServiceAop {
     OptLog optLog = createOptLog(serviceResult);
     optLogService.addOptLog(optLog);
   }
-  
   /**
    * 拦截业务逻辑方法执行失败
    * 
@@ -85,7 +73,6 @@ public class ServiceAop {
     OptLog optLog = createFailOptLog(ex);
     optLogService.addOptLog(optLog);
   }
-  
   /**
    * 创建操作日志
    * 
@@ -108,7 +95,6 @@ public class ServiceAop {
     
     return optLog;
   }
-  
   /**
    * 创建操作失败的操作日志
    * 
@@ -127,5 +113,4 @@ public class ServiceAop {
     
     return optLog;
   }
-  
 }

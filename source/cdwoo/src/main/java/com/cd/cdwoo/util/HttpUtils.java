@@ -1,5 +1,4 @@
 package com.cd.cdwoo.util;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,9 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Map;
-
 import org.apache.commons.lang.StringUtils;
-
 import com.cd.cdwoo.common.Constants;
 /**
  * HTTP请求帮助类,
@@ -24,7 +21,6 @@ import com.cd.cdwoo.common.Constants;
  * @author chendong
  */
 public final class HttpUtils {
-  
   /**
    * HTTP请求参数验证成功
    */
@@ -35,7 +31,6 @@ public final class HttpUtils {
    */
   private HttpUtils() {
   }
-  
   /**
    * 根据地址和参数返回字符串
    * 
@@ -138,7 +133,6 @@ public final class HttpUtils {
     }
     return result;
   }
-  
   /**
    * 根据地址和参数返回字符串
    * 
@@ -218,7 +212,6 @@ public final class HttpUtils {
     }
     return in;
   }
-  
   /**
    * 发送GET请求返回字符串
    * 
@@ -310,7 +303,6 @@ public final class HttpUtils {
     }
     return result;
   }
-  
   /**
    * 发送GET请求返回字符串
    * 
@@ -342,7 +334,6 @@ public final class HttpUtils {
     }
     StringBuilder msg = new StringBuilder(512);
     msg.append("HttpGet - URL=[").append(realUrlParam);
-    
     long timeStart = System.currentTimeMillis();
     InputStream in = null;
     try {
@@ -374,7 +365,6 @@ public final class HttpUtils {
     }
     return in;
   }
-  
   /**
    * map封装的参数转化为请求参数形式
    * 

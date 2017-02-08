@@ -158,7 +158,7 @@ public class XS3UploadUtil {
    */
   public static String uploadFile2CNC(File file, String suffix) throws Exception {
     Map<String, String> params = new HashMap<String, String>();
-    Map<String, Object> map = new HashMap<>();
+    Map<String, Object> map = new HashMap<String, Object>();
     map.put("scope", XS3BUCKETNAME);
     map.put("deadline", System.currentTimeMillis()+300000);
     map.put("callbackUrl", "http://itbs.light.fang.com/olapservice/CNCUloadCallBack/upload2CNCCallback.do");

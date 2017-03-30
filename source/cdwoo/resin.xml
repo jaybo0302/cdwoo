@@ -13,12 +13,12 @@
 	
 	<cluster id="app-tier">
 		<!-- 该处填写解压后resin文件夹中的app-default.xml文件的绝对路径 -->
-		<resin:import path="D:/resin-4.0.35/conf/app-default.xml" />
+		<resin:import path="D:/Program Files (x86)/resin-4.0.35/conf/app-default.xml" />
 		<server id="" >
 			<http port="8080" />
 		</server>
 		<!-- 该处填写eclipse生成项目的地址('\'符号不需要转译成'/') -->
-		<host id="" root-directory="D:\workspace-git\cdwoo\source\cdwoo">
+		<host id="" root-directory="D:\workspace\cdwoo\source\cdwoo">
 			<web-app id="/cdwoo" root-directory="src/main/webapp" />
             <web-app id="/cdwooFile" root-directory="E:\cdwooVirtualPath\"/>
 		</host>

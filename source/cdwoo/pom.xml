@@ -214,7 +214,7 @@
       <version>2.2.2</version>
       <scope>system</scope>
       <!-- 本地jar的路径,绝对路径 -->
-      <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jodconverter-2.2.2.jar</systemPath>
+      <systemPath>D:\workspace\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jodconverter-2.2.2.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.artofsolving</groupId>
@@ -222,7 +222,7 @@
       <version>2.2.2</version>
       <scope>system</scope>
       <!-- 本地jar的路径,绝对路径 -->
-      <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jodconverter-cli-2.2.2.jar</systemPath>
+      <systemPath>D:\workspace\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jodconverter-cli-2.2.2.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.artofsolving</groupId>
@@ -230,7 +230,7 @@
       <version>3.0.1</version>
       <scope>system</scope>
       <!-- 本地jar的路径,绝对路径 -->
-      <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\juh-3.0.1.jar</systemPath>
+      <systemPath>D:\workspace\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\juh-3.0.1.jar</systemPath>
      </dependency>
      <dependency>
       <groupId>com.artofsolving</groupId>
@@ -238,7 +238,7 @@
       <version>3.0.1</version>
       <scope>system</scope>
       <!-- 本地jar的路径,绝对路径 -->
-      <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jurt-3.0.1.jar</systemPath>
+      <systemPath>D:\workspace\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\jurt-3.0.1.jar</systemPath>
      </dependency>
      <dependency>
       <groupId>com.artofsolving</groupId>
@@ -246,7 +246,7 @@
       <version>3.0.1</version>
       <scope>system</scope>
       <!-- 本地jar的路径,绝对路径 -->
-      <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\ridl-3.0.1.jar</systemPath>
+      <systemPath>D:\workspace\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\ridl-3.0.1.jar</systemPath>
      </dependency>
      <dependency>
       <groupId>com.artofsolving</groupId>
@@ -254,7 +254,7 @@
       <version>3.0.1</version>
       <scope>system</scope>
       <!-- 本地jar的路径,绝对路径 -->
-      <systemPath>D:\workspace-git\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\unoil-3.0.1.jar</systemPath>
+      <systemPath>D:\workspace\cdwoo\source\cdwoo\src\main\webapp\WEB-INF\lib\unoil-3.0.1.jar</systemPath>
      </dependency>
      
     <dependency>

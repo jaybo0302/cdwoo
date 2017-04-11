@@ -6,6 +6,12 @@
  * Copyright (C) 2003-2016 搜房资讯有限公司-版权所有
  */
 package com.cd.cdwoo.common;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.cd.cdwoo.core.entity.ScheduleJob;
 import com.cd.cdwoo.util.PropertiesReaderUtils;
 /**
  * @author chendong
@@ -31,4 +37,16 @@ public final class Constants {
    */
   private Constants() {
   }
+  /**
+   * Field : 定时任务列表 .
+   * Add By 
+   * 2017年4月8日 上午10:28:17
+   */
+  public static final List<ScheduleJob> ALL_QUARTZ_JOBS = new ArrayList<>();
+  /**
+   * Field : 上一次定时任务配置信息 .
+   * Add By 
+   * 2017年4月8日 上午11:46:08
+   */
+  public static final Map<String, String> OLD_QUARTZ_JOBS = new HashMap<>();
 }

@@ -12,5 +12,5 @@
     
   <import resource="classpath:META-INF/spring/appContext-db.xml"></import>
   <import resource="classpath:META-INF/spring/appContext-bean.xml"></import>
-  <import resource="classpath:META-INF/spring/appContext-test.xml" />
+<!--   <import resource="classpath:META-INF/spring/appContext-test.xml" /> -->
 </beans>

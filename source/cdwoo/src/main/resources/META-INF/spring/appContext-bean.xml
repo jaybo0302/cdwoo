@@ -14,4 +14,6 @@
 
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
   p:maxUploadSize="2248000000" p:maxInMemorySize="512" />
+  <!-- 定时任务 -->
+  <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
 </beans>

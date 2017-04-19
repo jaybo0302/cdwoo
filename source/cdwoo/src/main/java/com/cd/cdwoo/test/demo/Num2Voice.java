@@ -36,7 +36,7 @@ public class Num2Voice {
    * @param args
    */
   public static void main(String[] args) {
-    System.out.println(util(999999999998L));
+    System.out.println(util(1201));
   }
   public static String util(long num) {
     String result = "";
@@ -73,17 +73,12 @@ public class Num2Voice {
   
   public static String get(String numStr) {
     String result = "";
-    int chu = 0;
     for (int i = 0; i < 4; i++) {
-      chu = 10000;
-      for(int j=0; j < i + 1; j++) {
-       chu  /= 10;
-      }
-      int num = (Integer.parseInt(numStr.substring(i, numStr.length())) / chu);
-      if (num >0) {
-        result += (numMap.get(String.valueOf(num)) + NAME[i]);
+      String num = numMap.get(String.valueOf(numStr.toCharArray()[i]));
+      if ("零".equals(num)) {
+        result += num;
       } else {
-        result += "零";
+        result += (num + NAME[i]);
       }
     }
     result = result.substring(0, result.length() - 1);

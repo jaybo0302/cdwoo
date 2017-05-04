@@ -19,4 +19,5 @@ import com.cd.cdwoo.user.entity.User;
 public interface CustomServive {
   List<Map<String, Object>> getList(String realName);
   User getUserById(String userId);
+  Object testMasClus();
 }

@@ -72,7 +72,162 @@
       false -->
     <property name="testConnectionOnCheckout" value="${testConnectionOnCheckout}" />
   </bean>
+  
+<!--#################################多数据源切换begin######################################-->
 
+    <!--创建jdbc数据源 -->
+    <bean id="masterDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.w}" />
+        <property name="url" value="${jdbc.url.w}" />
+        <property name="username" value="${jdbc.username.w}" />
+        <property name="password" value="${jdbc.password.w}" />
+        <!-- 初始化连接数 -->
+        <property name="initialSize" value="10"></property>
+        <!-- 最大活动连接数 -->
+        <property name="maxActive" value="100"></property>
+        <!-- 最大空闲连接 -->
+        <property name="maxIdle" value="40"></property>
+        <!-- 最小空闲连接 -->
+        <property name="minIdle" value="10"></property>
+        <!-- 从池中获取连接最大等待时间 -->
+        <property name="maxWait" value="3000"></property>
+        <!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. -->
+        <property name="testWhileIdle" value="true"></property>
+        <!-- 借出连接时不要测试 -->
+        <property name="testOnBorrow" value="false"></property>
+        <!-- 每30秒运行一次空闲连接回收器 -->
+        <property name="timeBetweenEvictionRunsMillis" value="30000"></property>
+        <!-- 池中的连接空闲1分钟后被回收 -->
+        <property name="minEvictableIdleTimeMillis" value="1800000"></property>
+        <!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+        <property name="numTestsPerEvictionRun" value="3"></property>
+        <!-- 连接泄漏回收参数，当可用连接数少于3个时才执行 -->
+        <property name="removeAbandoned" value="true"></property>
+        <!-- 连接泄漏回收参数，180秒，泄露的连接可以被删除的超时值 -->
+        <property name="removeAbandonedTimeout" value="180"></property>
+    </bean>
+    <bean id="slaveDataSource1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.r}" />
+        <property name="url" value="${jdbc.url.r}" />
+        <property name="username" value="${jdbc.username.r}" />
+        <property name="password" value="${jdbc.password.r}" />
+        <!-- 初始化连接数 -->
+        <property name="initialSize" value="10"></property>
+        <!-- 最大活动连接数 -->
+        <property name="maxActive" value="100"></property>
+        <!-- 最大空闲连接 -->
+        <property name="maxIdle" value="40"></property>
+        <!-- 最小空闲连接 -->
+        <property name="minIdle" value="10"></property>
+        <!-- 从池中获取连接最大等待时间 -->
+        <property name="maxWait" value="3000"></property>
+        <!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. -->
+        <property name="testWhileIdle" value="true"></property>
+        <!-- 借出连接时不要测试 -->
+        <property name="testOnBorrow" value="false"></property>
+        <!-- 每30秒运行一次空闲连接回收器 -->
+        <property name="timeBetweenEvictionRunsMillis" value="30000"></property>
+        <!-- 池中的连接空闲1分钟后被回收 -->
+        <property name="minEvictableIdleTimeMillis" value="1800000"></property>
+        <!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+        <property name="numTestsPerEvictionRun" value="3"></property>
+        <!-- 连接泄漏回收参数，当可用连接数少于3个时才执行 -->
+        <property name="removeAbandoned" value="true"></property>
+        <!-- 连接泄漏回收参数，180秒，泄露的连接可以被删除的超时值 -->
+        <property name="removeAbandonedTimeout" value="180"></property>
+    </bean>
+    <bean id="newsDuJiaDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.dujia}" />
+        <property name="url" value="${jdbc.url.dujia}" />
+        <property name="username" value="${jdbc.username.dujia}" />
+        <property name="password" value="${jdbc.password.dujia}" />
+        <!-- 初始化连接数 -->
+        <property name="initialSize" value="10"></property>
+        <!-- 最大活动连接数 -->
+        <property name="maxActive" value="100"></property>
+        <!-- 最大空闲连接 -->
+        <property name="maxIdle" value="40"></property>
+        <!-- 最小空闲连接 -->
+        <property name="minIdle" value="10"></property>
+        <!-- 从池中获取连接最大等待时间 -->
+        <property name="maxWait" value="3000"></property>
+        <!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. -->
+        <property name="testWhileIdle" value="true"></property>
+        <!-- 借出连接时不要测试 -->
+        <property name="testOnBorrow" value="false"></property>
+        <!-- 每30秒运行一次空闲连接回收器 -->
+        <property name="timeBetweenEvictionRunsMillis" value="30000"></property>
+        <!-- 池中的连接空闲1分钟后被回收 -->
+        <property name="minEvictableIdleTimeMillis" value="60000"></property>
+        <!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+        <property name="numTestsPerEvictionRun" value="3"></property>
+        <!-- 连接泄漏回收参数，当可用连接数少于3个时才执行 -->
+        <property name="removeAbandoned" value="true"></property>
+        <!-- 连接泄漏回收参数，180秒，泄露的连接可以被删除的超时值 -->
+        <property name="removeAbandonedTimeout" value="180"></property>
+    </bean>
+    <bean id="oldSqlServerDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.oldSqlServer}" />
+        <property name="url" value="${jdbc.url.oldSqlServer}" />
+        <property name="username" value="${jdbc.username.oldSqlServer}" />
+        <property name="password" value="${jdbc.password.oldSqlServer}" />
+        <!-- 初始化连接数 -->
+        <property name="initialSize" value="10"></property>
+        <!-- 最大活动连接数 -->
+        <property name="maxActive" value="100"></property>
+        <!-- 最大空闲连接 -->
+        <property name="maxIdle" value="40"></property>
+        <!-- 最小空闲连接 -->
+        <property name="minIdle" value="10"></property>
+        <!-- 从池中获取连接最大等待时间 -->
+        <property name="maxWait" value="3000"></property>
+        <!-- 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除. -->
+        <property name="testWhileIdle" value="true"></property>
+        <!-- 借出连接时不要测试 -->
+        <property name="testOnBorrow" value="false"></property>
+        <!-- 每30秒运行一次空闲连接回收器 -->
+        <property name="timeBetweenEvictionRunsMillis" value="30000"></property>
+        <!-- 池中的连接空闲1分钟后被回收 -->
+        <property name="minEvictableIdleTimeMillis" value="60000"></property>
+        <!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+        <property name="numTestsPerEvictionRun" value="3"></property>
+        <!-- 连接泄漏回收参数，当可用连接数少于3个时才执行 -->
+        <property name="removeAbandoned" value="true"></property>
+        <!-- 连接泄漏回收参数，180秒，泄露的连接可以被删除的超时值 -->
+        <property name="removeAbandonedTimeout" value="180"></property>
+    </bean>
+   <bean id="sqlSessionFactoryMaster" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="slaveDataSource1" />
+    <property name="mapperLocations" value="classpath:com/cd/**/mybatis/*Mapper.xml" />
+    <!-- 定义mybatis插件 -->
+    <property name="plugins">
+      <array>
+        <bean class="com.cd.cdwoo.plugs.mybatis.CustomPlugin">
+          <!-- 是否显示sql -->
+          <property name="isShowSql" value="${isShowSql}"></property>
+        </bean>
+      </array>
+    </property>
+  </bean>
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+    p:basePackage="com.cd.cdwoo.*.dao.master"  p:sqlSessionFactoryBeanName="sqlSessionFactoryMaster" />
+  <bean id="sqlSessionFactoryCluster" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="oldSqlServerDS" />
+    <property name="mapperLocations" value="classpath:com/cd/**/mybatis/*Mapper.xml" />
+    <!-- 定义mybatis插件 -->
+    <property name="plugins">
+      <array>
+        <bean class="com.cd.cdwoo.plugs.mybatis.CustomPlugin">
+          <!-- 是否显示sql -->
+          <property name="isShowSql" value="${isShowSql}"></property>
+        </bean>
+      </array>
+    </property>
+  </bean>
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+    p:basePackage="com.cd.cdwoo.*.dao.cluster"  p:sqlSessionFactoryBeanName="sqlSessionFactoryCluster" />
+  <!--#################################多数据源切换end######################################-->
+  
   <!-- 创建SqlSessionFactory，同时指定数据源 -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="cdwooDataSource" />

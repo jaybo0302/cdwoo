@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.cdwoo.core.dao.cluster.ClusterDao">
+  <select id="getSpecialInfo" resultType = "java.util.HashMap">
+ 	 select
+     subject_id as data_id,
+     subject_title as title,
+     en_name as title_short,
+     description as summary,
+     keyword,
+     created_time as time_created,
+     Author as author,
+     is_deleted,
+     isAudited as is_reviewed,
+     click_count as click_total,
+     img_path as cover_image_path
+     from
+     subject_v2_info
+     where subject_id in (${ids})
+  </select>
+ </mapper>

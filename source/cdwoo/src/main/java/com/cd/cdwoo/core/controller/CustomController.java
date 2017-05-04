@@ -36,4 +36,10 @@ public class CustomController {
   public Object testParam(HttpServletRequest req) throws Exception {
     return customServive.getUserById(URLDecoder.decode(req.getParameter("realName"), "utf-8"));
   }
+  
+  @ResponseBody
+  @RequestMapping("/testMasClus")
+  public Object testMasClus() {
+    return customServive.testMasClus();
+  }
 }

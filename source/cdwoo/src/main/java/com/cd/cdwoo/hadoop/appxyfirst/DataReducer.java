@@ -35,9 +35,9 @@ public class DataReducer extends Reducer<Text, Text, Text, NullWritable> {
       sum += value.get();
     }
     context.write(key, new IntWritable(sum));*/
-    //��values�е�ʱ��ȡ����Ȼ����ʱ���������list�� �ٱ���listд��hdfs
-    //key��imei  
-    //values������xy#!#ʱ��   106.6041+29.6022#!#2017-05-02 09:45:34
+    //将values中的时间取出，然后按照时间排序放入list中 再遍历list写入hdfs
+    //key是imei  
+    //values内容是xy#!#时间   106.6041+29.6022#!#2017-05-02 09:45:34
     List<Long> timeList = new ArrayList<>();
     Map<Long, String> map = new HashMap<>();
     for(Text value : values) {

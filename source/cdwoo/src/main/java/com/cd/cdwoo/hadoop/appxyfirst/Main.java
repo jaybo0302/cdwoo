@@ -31,10 +31,8 @@ public class Main {
     job.setOutputKeyClass(Text.class);
     job.setOutputValueClass(NullWritable.class);
     job.setNumReduceTasks(300);
-    //��Ӷ�ȡ·�� 
     FileInputFormat.addInputPaths(job, "/logs/app/serialized/201705*/visitor.appsf.general.baseinfo*.gz");
     //FileInputFormat.addInputPaths(job, "/logs/app/splitted/20161009/visitor.appzf.zf.zztype.gz");
-    //������·��
     Path output = new Path("/hbasegroup/cd/appxy/");
     FileSystem fs = FileSystem.get(conf);
     fs.delete(output, true);

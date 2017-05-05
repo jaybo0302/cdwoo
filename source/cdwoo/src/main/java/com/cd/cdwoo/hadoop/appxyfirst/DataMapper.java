@@ -34,8 +34,8 @@ public class DataMapper extends Mapper<LongWritable, Text, Text, Text> {
     //baseinfo.gz - imei,ip^message^os^version^xy^username^httpcompany,action,city,time,page,passportid
     String[] fields = value.toString().split(",", -1);
     String[] info = fields[1].split("\\^", -1);
-    //��2017-05-04 23:09:13 
-    //Ψһ�û���ʶ����λ��꣬���ڣ�ʱ��
+    //将2017-05-04 23:09:13 
+    //唯一用户标识，定位坐标，日期，时间
     if (fields.length == 7 && info.length == 7 && !info[4].equals("")) {
       if (cities.contains(fields[3])) {
         //String[] dates = fields[4].split(" ", -1);
@@ -49,10 +49,10 @@ public class DataMapper extends Mapper<LongWritable, Text, Text, Text> {
   @Override
   protected void setup(Context context) throws IOException, InterruptedException {
     super.setup(context);
-    cities.add("����");
-    cities.add("����");
-//    cities.add("�Ϻ�");
-//    cities.add("����");
+    cities.add("北京");
+    cities.add("广州");
+//    cities.add("上海");
+//    cities.add("深圳");
   }
   
 }

@@ -8,8 +8,12 @@
 package com.cd.cdwoo.hadoop.demo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.StringTokenizer;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -42,25 +46,25 @@ public class WordCountWithNewApi  extends Configured implements Tool {
     int ret = ToolRunner.run(new WordCountWithNewApi(), args);
     System.exit(ret);
   }
-  public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
+  public static class Map extends Mapper<LongWritable, Text, Text, Text> {
     private final static IntWritable one = new IntWritable(1);
     private Text word = new Text();
     public void map (LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-      String line = value.toString();
-      StringTokenizer tokenizer = new StringTokenizer(line);
-      while (tokenizer.hasMoreTokens()) {
-        word.set(tokenizer.nextToken());
-        context.write(word, one);
-      }
+      String[] lines = value.toString().split(" ");
+        context.write(new Text(lines[0]), new Text(lines[1]));
     }
     
-    public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
-      public void reduce (Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int sum = 0;
-        for (IntWritable value : values) {
-          sum += value.get();
+    public static class Reduce extends Reducer<Text, Text, Text, IntWritable> {
+      public void reduce (Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+        //对values的值进行倒排，然后写入到hdfs
+        List<Integer> list = new ArrayList<Integer>();
+        for (Text value : values) {
+          list.add(Integer.parseInt(value.toString()));
         }
-        context.write(key, new IntWritable(sum));
+        Collections.sort(list);
+        for (Integer num : list) {
+          context.write(key, new IntWritable(num));
+        }
       }
     }
   }
@@ -69,7 +73,7 @@ public class WordCountWithNewApi  extends Configured implements Tool {
     job.setJarByClass(WordCountWithNewApi.class);
     job.setJobName("WordCount");
     job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(IntWritable.class);
+    job.setOutputValueClass(Text.class);
     
     job.setMapperClass(Map.class);
     job.setReducerClass(Reduce.class);

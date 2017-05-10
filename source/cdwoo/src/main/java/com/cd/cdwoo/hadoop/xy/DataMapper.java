@@ -1,4 +1,4 @@
-package com.cd.cdwoo.hadoop.appxyfirst;
+package com.cd.cdwoo.hadoop.xy;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -12,7 +12,6 @@ import org.apache.hadoop.mapreduce.Mapper.Context;
 
 
 public class DataMapper extends Mapper<LongWritable, Text, Text, Text> {
-  private static final IntWritable one = new IntWritable(1);
   private Text outputKey = new Text();
   private Text outputValue = new Text();
   private Set<String> cities = new HashSet<String>();
@@ -26,21 +25,15 @@ public class DataMapper extends Mapper<LongWritable, Text, Text, Text> {
   @Override
   protected void map(LongWritable key, Text value, Context context)
       throws IOException, InterruptedException {
-    /*String line = value.toString();
-    String[] fields = line.split(",");
-    if (fields.length == 7) {
-      context.write(new Text(fields[3]), one);
-    }*/
-    //baseinfo.gz - imei,ip^message^os^version^xy^username^httpcompany,action,city,time,page,passportid
     String[] fields = value.toString().split(",", -1);
     String[] info = fields[1].split("\\^", -1);
-    //将2017-05-04 23:09:13 
-    //唯一用户标识，定位坐标，日期，时间
+    if (fields[4].length() != 19) {
+      return;
+    }
     if (fields.length == 7 && info.length == 7 && !info[4].equals("")) {
       if (cities.contains(fields[3])) {
-        //String[] dates = fields[4].split(" ", -1);
         outputKey.set(fields[0]);
-        outputValue.set(info[4] + "#!#" + fields[4]);
+        outputValue.set(info[4] + "," + fields[4]);
         context.write(outputKey, outputValue);
       }
     }
@@ -50,9 +43,7 @@ public class DataMapper extends Mapper<LongWritable, Text, Text, Text> {
   protected void setup(Context context) throws IOException, InterruptedException {
     super.setup(context);
     cities.add("北京");
-    cities.add("广州");
-//    cities.add("上海");
-//    cities.add("深圳");
+    cities.add("上海");
   }
   
 }

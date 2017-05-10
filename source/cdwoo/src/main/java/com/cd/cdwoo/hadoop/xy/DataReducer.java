@@ -1,4 +1,4 @@
-package com.cd.cdwoo.hadoop.appxyfirst;
+package com.cd.cdwoo.hadoop.xy;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -17,35 +17,24 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-
-
 public class DataReducer extends Reducer<Text, Text, Text, NullWritable> {
-
   @Override
   protected void cleanup(Context context) throws IOException,
       InterruptedException {
     super.cleanup(context);
   }
-
   @Override
   protected void reduce(Text key, Iterable<Text> values, Context context)
       throws IOException, InterruptedException {
-    /*int sum = 0;
-    for (IntWritable value : values) {
-      sum += value.get();
-    }
-    context.write(key, new IntWritable(sum));*/
-    //将values中的时间取出，然后按照时间排序放入list中 再遍历list写入hdfs
-    //key是imei  
-    //values内容是xy#!#时间   106.6041+29.6022#!#2017-05-02 09:45:34
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     List<Long> timeList = new ArrayList<>();
     Map<Long, String> map = new HashMap<>();
     for(Text value : values) {
       String info = value.toString();
-      String date = info.split("#!#")[1];
+      String date = info.split(",")[1];
       long time = 0;
       try {
-        time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date).getTime();
+        time = sdf.parse(date).getTime();
       }
       catch (ParseException e) {
         e.printStackTrace();
@@ -57,14 +46,26 @@ public class DataReducer extends Reducer<Text, Text, Text, NullWritable> {
     }
     Collections.sort(timeList);
     for (Long time : timeList) {
-      context.write(new Text(key.toString() + "#!#" + map.get(time)), null);
+      String[] info = map.get(time).split(",");
+      String date = info[1].replace(" ", ",");
+      context.write(new Text(key.toString() + "," + formatXY(info[0].split("\\+")[0]) + "," + formatXY(info[0].split("\\+")[1]) + "," + date), null);
     }
   }
-
   @Override
   protected void setup(Context context) throws IOException,
       InterruptedException {
     super.setup(context);
   }
-  
+  public String formatXY(String str) {
+    int l = str.length();
+    int o = str.lastIndexOf(".");
+    if (str.length() - str.lastIndexOf(".") >= 3) {
+      return str.substring(0, str.lastIndexOf(".") + 3);
+    } else {
+      for (int i=0; i<((3-(l-o))); i++){
+        str += "0";
+      }
+      return str;
+    }
+  }
 }

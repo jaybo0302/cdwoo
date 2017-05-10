@@ -25,10 +25,21 @@ public class Test {
    * @param args
    */
   public static void main(String[] args) {
-    // TODO Auto-generated method stub
-    List<Map<String, String>> list = getList();
-    System.out.println(list.get(0).get("key1"));
-    Object obj = list.get(0).get("key2");
+//    List<Map<String, String>> list = getList();
+//    System.out.println(list.get(0).get("key1"));
+//    Object obj = list.get(0).get("key2");
+//    System.out.println("2017-05-03 19:57:38".split(" ")[1].split(":")[0]);
+//    System.out.println("116.3823+39.8195".split("\\+")[1].substring(0, "116.3823+39.8195".split("\\+")[1].indexOf(".") + 3));
+//    System.out.println("2017-05-03 19:57:38".length());
+//    System.out.println("asasdfasfasf===23.45+123.34".split("===")[0]);
+//    
+//    System.out.println("2d9560044283af893c78c757fe67e97736ebf307#!#116.4180+39.9784#!#2017-05-06 11:11:06".split("#!#")[1].split("\\+")[0].length());
+//    String l = "113.412+22.9419";
+//    String x = l.split("\\+")[0];
+//    String y = l.split("\\+")[1];
+//    System.out.println(x.lastIndexOf(".") +" " + y.lastIndexOf("."));
+    
+    System.out.println("115.9999+39.9832".replace("\\+", ","));
   }
   public static <A> List<A> getList() {
     List<A> list = new ArrayList<>();
@@ -37,5 +48,17 @@ public class Test {
     map.put("key2", 2);
     list.add((A) map);
     return list;
+  }
+  public static String formatXY(String str) {
+    int l = str.length();
+    int o = str.lastIndexOf(".");
+    if (str.length() - str.lastIndexOf(".") >= 3) {
+      return str.substring(0, str.lastIndexOf(".") + 3);
+    } else {
+      for (int i=0; i<((2-(l-o))+1); i++){
+        str += "0";
+      }
+      return str;
+    }
   }
 }

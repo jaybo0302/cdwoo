@@ -9,6 +9,7 @@ package com.cd.cdwoo.test.demo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,27 @@ public class Test {
 //    String y = l.split("\\+")[1];
 //    System.out.println(x.lastIndexOf(".") +" " + y.lastIndexOf("."));
     
-    System.out.println("115.9999+39.9832".replace("\\+", ","));
+ // 只要实现了Iterable接口的对象都可以使用for-each循环。  
+    // Iterable接口只由iterator方法构成，  
+    // iterator()方法是java.lang.Iterable接口，被Collection继承。  
+    /*public interface Iterable<T> { 
+        Iterator<T> iterator(); 
+    }*/  
+    Iterable<String> iter = new Iterable<String>() {  
+        public Iterator<String> iterator() {  
+            List<String> l = new ArrayList<String>();  
+            l.add("aa");  
+            l.add("bb");  
+            l.add("cc");  
+            return l.iterator();  
+        }  
+    };  
+    for(int count : new int[] {1, 2}){  
+        for (String item : iter) {  
+            System.out.println(item);  
+        }  
+        System.out.println("---------->> " + count + " END.");  
+    }
   }
   public static <A> List<A> getList() {
     List<A> list = new ArrayList<>();

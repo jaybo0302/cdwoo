@@ -69,28 +69,28 @@ public class Test  extends Configured implements Tool {
 //            context.write(outputKey, outputValue);
 //          }
 //        }
+
+//        String[] fields = value.toString().split(",", -1);
+//        if (fields.length != 7) {
+//          return;
+//        }
+//        String[] info = fields[1].split("\\^", -1);
+//        if (info.length == 7 && !info[4].equals("") && fields[4].length() == 19) {
+//          outputKey.set(fields[0]);
+//          outputValue.set(info[4] + "," + fields[4] + "," + fields[3]);
+//          context.write(outputKey, outputValue);
+//        }
+      
        //////////////////////=====================xy map======================///////////////////
         
         
        ///////////////////////////================activity map==================///////////////////////
-//        String[] fields = value.toString().split(",", -1);
-//        String[] info = fields[1].split("\\^", -1);
-//        if (fields[4].length() != 19) {
-//          return;
-//        }
-//        if (fields.length == 7 && info.length == 7 && !info[4].equals("")) {
-//          if (cities.contains(fields[3])) {
-//            outputKey.set(fields[0]);
-//            outputValue.set(formatXY(info[4].split("\\+")[0]) + "," + formatXY(info[4].split("\\+")[1]) + "," + fields[4].replace(" ", ","));
-//            context.write(outputKey, outputValue);
-//          }
-//        }
         String[] fields = value.toString().split(",");
-        if (fields[1].lastIndexOf(".") < 0 || fields[2].lastIndexOf(".") < 0) {
-          return;
-        }
+        //将imei 作为key
+        //113.2116+23.16有类似的数据，做特殊处理
         outputKey.set(fields[0]);
-        outputValue.set(formatXY(fields[1]) + "," + formatXY(fields[2]) + "," + fields[3]+ "," + fields[4]);
+        //time作为value 以便计算活动时长。
+        outputValue.set(fields[1] + "," + fields[2] + "," + fields[3]+ "," + fields[4]);
         context.write(outputKey, outputValue);
         ///////////////////////////================activity map==================///////////////////////
         
@@ -106,10 +106,28 @@ public class Test  extends Configured implements Tool {
     public static class Reduce extends Reducer<Text, Text, Text, NullWritable> {
       public void reduce (Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
         //////////////////////=====================xy reduce======================///////////////////
+
+        //将values中的时间取出，然后按照时间排序放入list中 再遍历list写入hdfs
+        //key是imei  
+        //values内容是x,y,时间,城市   106.6041+29.6022,2017-05-02 09:45:34,北京
+        //首先遍历当前用户是否访问过北京，即集合中出现过city是北京的
+        //这里注意遍历过之后，values里面的内容将是空
+//        List<Text> copyValues = new ArrayList<>();
+//        boolean isEffect = false;
+//        for (Text value : values) {
+//          if ("北京".equals(value.toString().split(",", -1)[2])) {
+//            isEffect = true;
+//          }
+//          copyValues.add(new Text(value));
+//        }
+//        //如果没有北京，则直接返回，当前用户不做统计
+//        if (isEffect == false) {
+//          return;
+//        }
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        List<Long> timeList = new ArrayList<>();
 //        HashMap<Long, String> map = new HashMap<>();
-//        for(Text value : values) {
+//        for(Text value : copyValues) {
 //          String info = value.toString();
 //          String date = info.split(",")[1];
 //          long time = 0;
@@ -125,15 +143,25 @@ public class Test  extends Configured implements Tool {
 //            map.put(time, info);
 //          }
 //        }
+//        copyValues.clear();
 //        //按照时间排序
 //        Collections.sort(timeList);
 //        //遍历时间list并将对应的info取出
+//        String x;
+//        String y;
 //        for (Long time : timeList) {
 //          String[] info = map.get(time).split(",");
-//          String xy = info[0].replace("+", ",");
 //          String date = info[1].replace(" ", ",");
-//          context.write(new Text(key.toString() + "," + xy + "," + date), null);
+//          try {
+//            x = formatXY(info[0].split("\\+")[0]);
+//            y = formatXY(info[0].split("\\+")[1]);
+//          }
+//          catch (Exception e) {
+//            continue;
+//          }
+//          context.write(new Text(key.toString() + "," + x + "," + y + "," + date), null);
 //        }
+      
         //////////////////////=====================xy reduce======================///////////////////
         
         
@@ -141,7 +169,7 @@ public class Test  extends Configured implements Tool {
       ///////////////////////////================activity reduce==================///////////////////////
 
         //key 2c3bb5c52fbba118fabe6310970e058ac84bbb44
-        //value113.2894,23.1406,2017-05-04,15:26:44
+        //value113.28,23.14,2017-05-04,15:26:44
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //首先将用户所有的数据按照时间排序 时间已做排重 并将用户value存入map中
         //遍历时间，如果xy一样的话数据用户在一个位置停留，直到定位不一样算作一次活动结束记录开始时间，活动时间，以及累计时长
@@ -345,7 +373,7 @@ public class Test  extends Configured implements Tool {
       
       
       /////////////////////activity////////////////////////////
-      FileInputFormat.setInputPaths(job, new Path("C:\\Users\\jaybo\\Desktop\\hadoop\\part-r-00000"));
+      FileInputFormat.setInputPaths(job, new Path("C:\\Users\\jaybo\\Desktop\\hadoop\\appxy\\part-r-00000"));
       FileOutputFormat.setOutputPath(job, new Path("C:\\Users\\jaybo\\Desktop\\hadoop\\activity"));
       
       /////////////////////add///////////////////////////////
